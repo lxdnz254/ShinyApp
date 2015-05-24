@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Kmeans versus Kernel Kmeans</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Kmeans versus Kernel Kmeans">
+  <meta name="author" content="Alex McBride">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/idea.css.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Kmeans versus Kernel Kmeans</h1>
+    <h2>A Shiny Application Exploring Cluster Models</h2>
+    <p>Alex McBride<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>What is K-means?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>K-means is a cluster analysis model used to cluster linear points in a data set</p>
+
+<p><img src="assets/fig/unnamed-chunk-1-1.png" title="plot of chunk unnamed-chunk-1" alt="plot of chunk unnamed-chunk-1" width="320px" height="200px" /></p>
+
+<p>But how effective is it at clustering when the data is non-linear?</p>
+
+<p><img src="assets/fig/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" width="320px" height="200px" /></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>K-means Cluster and Kernel K-means Cluster</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="840px" height="230px" /></p>
+
+<h2>How does Kernel K-means differ?</h2>
+
+<p>Kernel k-means is an extension of the standard k-means algorithm that maps data points from input space to a higher dimensional feature space through a nonlinear transformation and minimizes the clustering error in feature space. But it does have its limitations....</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>The Shiny Application</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>My shiny application, which you can run at <a href="https://lxdnz-254.shinyapps.io/ClusterAnalysis/" title="Cluster ShinyApp">my Shiny App page,</a> works by selecting the type of cluster modelling, (k-means or Kernel K-means) and number of clusters. From the inputs it produces a cluster plot showing the clustered dataset. It also runs a cross-validation test and gives results for Purity and NMI (Normalized Mutual Information).</p>
+
+<p>In its current form, this application would be a useful teaching aid to show the difference between the two methods, and to highlight some of the drawbacks of each cluster model.
+e.g. What happens when \(\sigma\) (sigma) is set to high using the Kernel K-means algorithm?</p>
+
+<p>The cross-validation test only gives a true result when the number of clusters is set to 2. For clusters larger than 2, the app generates a random test set based on the number of clusters selected and then produces results for NMI &amp; Purity based on this random truth set. These results do not always reflect the exactness of the algorithms running.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Further Developments</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>This shiny app could become a very powerful tool, enabling quick cluster analysis on the fly.</p>
+
+<p>It could be useful for presentations requiring various datasets, or to show different model results.
+As a tool for data analysis, it could be used to visualise (quickly) some cluster model theories over a dataset, perhaps saving the user time by helping to rule out or select a model to optimise for their dataset.</p>
+
+<p>In the future, I would like to incorporate into the Shiny App</p>
+
+<ul>
+<li>Ability to choose datasets and variables</li>
+<li>Select truth data sets</li>
+<li>Select different types of cluster modelling</li>
+<li>Change the style of plot output</li>
+</ul>
+
+<p>To view the source code for the app or to collaborate visit my <a href="https://github.com/lxdnz254/ShinyApp">Github Repo.</a></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='What is K-means?'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='K-means Cluster and Kernel K-means Cluster'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='The Shiny Application'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Further Developments'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>

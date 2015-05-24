@@ -1,0 +1,17 @@
+base
+kernlab
+clue
+cluster
+class
+clv
+clValid
+ggplot2
+fpc
+shiny
+shinyapps
+devtools
+slidify
+gridExtra
+markdown
+rmarkdown
+knitr
