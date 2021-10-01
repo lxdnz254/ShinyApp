@@ -15,4 +15,4 @@ In the future, I aim to add more features to this app, including:
  * Plot output options
  * More...
  
-There is a slider presentation available at [this page](https://lxdnz-254.shinyapps.io/ClusterAnalysis/) or at [this Rpubs page](http://rpubs.com/lxdnz/Kmeans)
+There is a Shiny app slider presentation available at [this page](https://lxdnz-254.shinyapps.io/ClusterAnalysis/)
