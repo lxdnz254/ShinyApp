@@ -145,11 +145,75 @@ install.packages(c("shiny", "ggplot2", "fpc", "cluster", "clue", "kernlab"))
 Edit `Kmeans/index.Rmd` and re-knit using `slidify` or RStudio's Knit button to regenerate `Index.html` and `Index.md`.
 
 ### Deployment to ShinyApps.io
+
+Deployment is automated via GitHub Actions (`.github/workflows/deploy.yml`). Every push to `master` triggers a deploy to shinyapps.io automatically.
+
+For manual deployment from R:
 ```r
 library(rsconnect)
 rsconnect::deployApp("/home/user/ShinyApp", appName = "ClusterAnalysis")
 ```
 The deployment manifest is at `shinyapps/lxdnz-254/ClusterAnalysis.dcf`.
+
+---
+
+## CI/CD — Required Manual Setup (One-Time)
+
+Before the GitHub Actions deploy workflow will function, three secrets must be added to the GitHub repository:
+
+| Secret Name | Where to Find It |
+|-------------|-----------------|
+| `SHINYAPPS_ACCOUNT` | Your shinyapps.io username (e.g. `lxdnz-254`) |
+| `SHINYAPPS_TOKEN` | shinyapps.io dashboard → Account → Tokens → Show |
+| `SHINYAPPS_SECRET` | shinyapps.io dashboard → Account → Tokens → Show |
+
+**Steps to add secrets:**
+1. Go to https://github.com/lxdnz254/ShinyApp/settings/secrets/actions
+2. Click **New repository secret** for each of the three secrets above
+3. Push any commit to `master` to verify the workflow runs successfully
+
+**To retrieve shinyapps.io token and secret:**
+1. Log in to https://www.shinyapps.io
+2. Go to **Account → Tokens**
+3. Click **Show** next to your token to reveal both the token and secret values
+
+Once secrets are in place, all future merges to `master` will auto-deploy without any manual steps.
+
+---
+
+## Planned Data Display Improvements
+
+The following improvements are prioritised by impact on data display, which is the primary development goal.
+
+### High Priority
+
+| Improvement | Description | Files to Change |
+|-------------|-------------|-----------------|
+| **Styled metric boxes** | Replace raw `verbatimTextOutput` for Purity/NMI with formatted value boxes using `shinydashboard` or inline HTML/CSS | `UI.R`, `server.R` |
+| **Per-cluster summary table** | Show cluster size, centroid coordinates, and within-cluster variance per cluster using `DT::datatable()` | `UI.R`, `server.R` |
+| **Side-by-side comparison plot** | Render K-means and Kernel K-means plots simultaneously so differences are immediately visible without toggling | `UI.R`, `server.R` |
+
+### Medium Priority
+
+| Improvement | Description | Files to Change |
+|-------------|-------------|-----------------|
+| **Elbow/scree plot** | Plot within-cluster sum of squares vs. k to help users identify the optimal cluster count | `UI.R`, `server.R` |
+| **Metrics history table** | Accumulate Purity and NMI across user interactions so results across different k/sigma settings can be compared | `server.R` |
+| **Data table tab** | Add a `DT` tab showing each point's X, Y, assigned cluster, and ground truth match (when k=2) | `UI.R`, `server.R` |
+
+### Lower Priority
+
+| Improvement | Description | Files to Change |
+|-------------|-------------|-----------------|
+| Selectable datasets | Allow users to upload or choose from built-in datasets | `UI.R`, `server.R` |
+| Additional algorithms | DBSCAN, Gaussian Mixture Models | `server.R` |
+| Additional kernel types | Beyond RBF | `UI.R`, `server.R` |
+
+### Additional R Packages Required
+
+```r
+install.packages(c("DT"))  # for datatable outputs
+```
 
 ---
 
